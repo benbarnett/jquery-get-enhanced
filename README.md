@@ -8,7 +8,7 @@ Tested with jQuery 1.3.2+
 Demo
 -----------------
 
-Coming soon.
+[Please refer to demo site](http://playground.benbarnett.net/jquery-get-enhanced/).
 
 
 What it does
