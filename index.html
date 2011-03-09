@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>jQuery Get with Selector Support for fetching page fragments</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Ben Barnett">
+	<!-- Date: 2010-09-01 -->
+
+	
+	<style type="text/css" media="screen">
+		html {
+			padding:0;
+			margin:0;
+			background:#ebebeb;
+		}
+		
+		body {
+			width:760px;
+			padding:15px;
+			margin:15px auto;
+			background:#fff;
+			font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+			-webkit-border-radius:10px;
+			-moz-border-radius:10px;
+			border-radius:10px;
+		}
+		
+		iframe, div.results {
+			display:inline-block;
+			width:49%;
+			vertical-align:top;
+			margin:15px 0;
+		}
+
+		
+		h2.highlight {
+			padding:5px;
+			background:#ffcc00;
+		}
+		
+		.target-dom {
+			background:#0cc;
+		}
+		
+		.target-css-leave {
+			background:#fc0;
+		}
+		
+		p#results {
+			color:#c00;
+		}
+
+		div#socialise {
+			margin-top:50px;
+			padding-top:20px;
+			border-top:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<h1>jquery.get-enhanced plugin</h1>
+	<h2>Extend $.get() to add selector support. Usage is identical, except you can add a selector to get a page fragment, like you can with <a href="http://api.jquery.com/load/">$.load</a></h2>
+	
+
+	<p>Note that any requests without a selector in them will simply be passed back to the native jQuery.get() method. Requires jQuery 1.3.2+</p>
+
+	<h2>Demo</h2>
+	<p>The animation types can be used in any combination, and with any number of elements. See 3 different types below:</p>
+	
+
+	<div class="results">
+		<p id="results">Parsed data will appear here...</p>
+		<button id="start">Fetch and Replace</button>
+	</div>
+	
+	<iframe src="tests/endpoint/data.html" width="100%" height="250" scrolling="auto">
+		Example endpoint data would appear here if your browser supported iFrames.
+	</iframe>
+	
+
+	<h2>Example code</h2>
+	
+	<script src="https://gist.github.com/862066.js"> </script>
+	
+	<h2>What it does</h2>
+	<p>The plugin simply adds selector support to enable $.get'ing of page fragments, to save you having to slice the response yourself. Super lightweight and non-intrusive, it will just pass back to the original $.get() method once its work is done.</p>
+
+	<p>It means that you can 'do stuff' with the content before appending it to the DOM:</p>
+
+	<p>e.g.	$('.target').html(data.replace(/cool/ig, 'AMAZING'));</p>
+	
+	
+	<h2>Usage</h2>
+	<p>Usage is identical to the <a href="http://api.jquery.com/get/">jQuery get() function</a>.</p>
+	
+	
+	<h2>Download</h2>
+	<ul>
+		<li><a href="https://github.com/benbarnett/jQuery-Get-Enhanced/raw/master/jquery.get-enhanced.min.js">Compressed version</a> (754B)</li>
+		<li><a href="https://github.com/benbarnett/jQuery-Get-Enhanced/raw/master/scripts/src/jquery.get-enhanced.js">Uncompressed version</a> (3.01KB)</li>
+	</ul>
+	
+	<h2>Credits</h2>
+	<ul>
+		<li>Author: <a href="http://www.benbarnett.net">Ben Barnett</a> (<a href="http://twitter.com/benpbarnett">Twitter</a>)</li>
+	</ul>
+	
+	<h2>License</h2>
+	<p>Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.</p>
+	
+	<div id="socialise">
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="benpbarnett">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+	<h2>Comments</h2>
+	<h3>Please DO NOT put bug reports on the comments below. Feel free to report any issues on the <a href="https://github.com/benbarnett/jQuery-Get-Enhanced/issues">Github Issues</a> page.</h3>
+
+	<div id="disqus_thread"></div>
+	</div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://benbarnett.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=benbarnett">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	
+	<a href="https://github.com/benbarnett/jQuery-Get-Enhanced/"><img style="position: fixed; top: 0; left: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub" /></a> 
+	
+	<script type="text/javascript" src="scripts/contrib/jquery-1.3.2.js"></script>
+	<script type="text/javascript" src="scripts/src/jquery.get-enhanced.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		var sillyWords = ["incredible", "awesome", "amazing", "fantastic"];
+	
+		$('button').click(function() {
+			var button = $(this).attr('disabled', 'disabled');
+			
+			$.get('tests/endpoint/data.html #target', function(data) {
+				// do something amazing with the data
+				if (data) {
+					// fetch word
+					var word = sillyWords[Math.floor(Math.random() * sillyWords.length)];
+					
+					// replace
+					var output = data.replace(/cool/ig, word);
+					
+					// write to DOM
+					$('#results').html(output);
+				}
+				
+				button.removeAttr('disabled');
+			});
+		});
+	</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8825585-11']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+var disqus_shortname = 'benbarnett';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/benbarnett/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+</body>
+</html>

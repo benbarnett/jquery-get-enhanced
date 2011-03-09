@@ -1,7 +1,7 @@
 jquery.get-enhanced plugin
 ===============
 
-Extend $.get() to add selector support. Usage is identical, except you can add a selector to get a page fragment, like you can with ([$.load](http://api.jquery.com/load/)).
+Extend $.get() to add selector support. Usage is identical, except you can add a selector to get a page fragment, like you can with [$.load](http://api.jquery.com/load/).
 
 Tested with jQuery 1.3.2+
 
